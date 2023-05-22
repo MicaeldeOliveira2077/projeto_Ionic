@@ -7,21 +7,42 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <form action="">
+  <form #fc="ngForm">
     <ion-list>
-      <ion-item>
-        <ion-input label="Nome" label-placement="floating" fill="outline" placeholder="Seu nome..."></ion-input>
+      <ion-item class="pt-10">
+        <ion-input label="Nome" label-placement="floating" fill="outline" [(ngModel)]="user.nome" name="nome"
+          required></ion-input>
       </ion-item>
-      <ion-item>
-        <ion-input label="Senha" label-placement="floating" fill="outline" placeholder="Sua senha..."></ion-input>
+
+      <ion-item class="pt-10">
+        <ion-input label="E-mail" label-placement="floating" fill="outline" [(ngModel)]="user.email" name="email"
+          pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" required></ion-input>
       </ion-item>
+
+
+      <ion-item class="pt-10">
+        <ion-input label="senha" label-placement="floating" fill="outline" [(ngModel)]="user.senha" name="senha"
+          required></ion-input>
+      </ion-item>
+
+
+      <ion-item item class="pt-10">
+        <ion-input label="Telefone" label-placement="floating" fill="outline" [(ngModel)]="user.telefone"
+          name="telefone" required></ion-input>
+      </ion-item>
+
+      <ion-item item class="pt-10">
+        <ion-button [disabled]="fc.invalid" slot="end">Salvar</ion-button>
+        <ion-button color="danger" slot="end">Cancelar</ion-button>
+      </ion-item>
+
+
     </ion-list>
   </form>
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+
+  {{user.nome}}
+
+  
 </ion-content>
+
+

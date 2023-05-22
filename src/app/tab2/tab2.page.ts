@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { User } from '../model/user';
 
 @Component({
   selector: 'app-tab2',
@@ -8,5 +9,7 @@ import { Component } from '@angular/core';
 export class Tab2Page {
 
   constructor() {}
+
+  user = new User();
 
 }
