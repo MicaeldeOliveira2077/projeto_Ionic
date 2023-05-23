@@ -30,6 +30,7 @@
     "@ionic/angular-server": "^7.0.6",
     "@ionic/core": "^7.0.6",
     "@jcesarmobile/ssl-skip": "0.2.0",
+    "firebase": "^9.22.0",
     "ionicons": "^7.0.0",
     "rxjs": "^7.5.0",
     "tls-test": "https://tls-test.npmjs.com/tls-test-1.0.0.tgz",

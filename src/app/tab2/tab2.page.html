@@ -7,6 +7,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+
   <form #fc="ngForm">
     <ion-list>
       <ion-item class="pt-10">
@@ -16,7 +17,7 @@
 
       <ion-item class="pt-10">
         <ion-input label="E-mail" label-placement="floating" fill="outline" [(ngModel)]="user.email" name="email"
-          pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" required></ion-input>
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required></ion-input>
       </ion-item>
 
 
@@ -32,7 +33,7 @@
       </ion-item>
 
       <ion-item item class="pt-10">
-        <ion-button [disabled]="fc.invalid" slot="end">Salvar</ion-button>
+        <ion-button [disabled]="fc.invalid" (click)="save()" slot="end">Salvar</ion-button>
         <ion-button color="danger" slot="end">Cancelar</ion-button>
       </ion-item>
 
@@ -42,7 +43,5 @@
 
   {{user.nome}}
 
-  
+
 </ion-content>
-
-
