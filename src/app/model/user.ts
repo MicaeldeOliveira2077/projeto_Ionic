@@ -5,6 +5,7 @@ export class User {
     email: String ="";
     senha: string = "";
     telefone: string = "";
+    ativo:boolean = true;
 
 
     add(){
