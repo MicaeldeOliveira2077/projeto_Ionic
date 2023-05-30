@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>userEnter</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">userEnter</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <form #fc="ngForm">
+    <ion-list>
+  <ion-item class="pt-10">
+    <ion-input type="email" label="E-mail" label-placement="floating" name="email"
+    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required></ion-input>
+  </ion-item>
+
+
+  <ion-item class="pt-10">
+    <ion-input label="senha" type="password" label-placement="floating"   name="senha"
+      required></ion-input>
+  </ion-item>
+
+  <ion-item class="pt-10 ion-text-center">
+    <ion-button [disabled]="fc.invalid" (click)="enter()">Logar</ion-button>
+    <ion-button color="danger" routerLink="/">Cancelar</ion-button>
+    <ion-button color="warning" routerLink="/tabs/userForm">Novo Cadastro</ion-button>
+  </ion-item>
+
+
+</ion-list>
+</form>
+</ion-content>
