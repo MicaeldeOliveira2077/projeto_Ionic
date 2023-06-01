@@ -29,10 +29,17 @@ export class UserFormPage implements OnInit {
   }
 
   save(){
-    this.userService.add(this.user);
-    this.presentAlert("Aviso", "Cadastrado");
-    //console.log(this.user);
-
+    this.userService.add(this.user)
+    .then((res) => {
+      console.log(res);
+      this.presentAlert("Aviso", "Cadastrado");
+    })
+    .catch((err) =>{
+        console.log(err);
+        this.presentAlert("Erro", "Não cadastrado");
+    })
+    
+  
     
   }
 

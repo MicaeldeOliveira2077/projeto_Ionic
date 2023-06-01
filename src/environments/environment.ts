@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,  
-  firebaseConfig: {
+  firebaseConfig : {
     apiKey: "AIzaSyB2lWJAKtgRxxEZHDsOZIsCUXb0nPEAXRk",
     authDomain: "salaomobile-ea412.firebaseapp.com",
     projectId: "salaomobile-ea412",
