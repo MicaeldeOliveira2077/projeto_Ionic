@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { User } from '../model/user';
-import { Firestore, collection, collectionData, addDoc, getDocs, query } from '@angular/fire/firestore';
+import { Firestore, collection, collectionData, addDoc, getDocs, query, getDoc, doc } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +20,15 @@ export class UserService {
     })
   }
 
-   list(){
-   return collectionData(query(this.userCollection));
+  async list() {
+    //return collectionData(query(this.userCollection));
+    const result = await getDocs(query(this.userCollection));
+    return result.docs.map(doc => ({ _id: doc.id, ...doc.data() }));
+  }
 
+  async get(id: string) {
+    const result = await getDoc(doc(this.firestore, 'users', id))
+    //return result.data() 
+    return { _id: result.id, ...result.data() }
   }
 }

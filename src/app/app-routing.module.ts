@@ -7,17 +7,9 @@ const routes: Routes = [
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
-    path: 'user-form',
-    loadChildren: () => import('./pages/user-form/user-form.module').then( m => m.UserFormPageModule)
+    path: 'produto-view',
+    loadChildren: () => import('./pages/produto-view/produto-view.module').then( m => m.ProdutoViewPageModule)
   },
-  {
-    path: 'user-enter',
-    loadChildren: () => import('./pages/user-enter/user-enter.module').then( m => m.UserEnterPageModule)
-  },
-  {
-    path: 'user-list',
-    loadChildren: () => import('./pages/user-list/user-list.module').then( m => m.UserListPageModule)
-  }
 ];
 @NgModule({
   imports: [

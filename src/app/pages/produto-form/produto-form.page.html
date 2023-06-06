@@ -1,0 +1,52 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Product-form
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<!--Nome: Micael de Oliveira Santana-->
+<ion-content [fullscreen]="true">
+
+  <form #fc="ngForm">
+    <ion-list>
+      <ion-item class="pt-10">
+        <ion-input label="Nome" label-placement="floating" [(ngModel)]="produtos.nome" name="nome"
+          required></ion-input>
+      </ion-item>
+
+      <ion-item class="pt-10">
+        <ion-input label="Categoria" label-placement="floating" [(ngModel)]="produtos.categoria" name="categoria"
+        required></ion-input>
+      </ion-item>
+
+      <ion-item class="pt-10">
+        <ion-input label="Fotos" label-placement="floating" [(ngModel)]="produtos.fotos" name="fotos"
+        required></ion-input>
+      </ion-item>
+
+      <ion-item class="pt-10">
+        <ion-input label="Descrição"  label-placement="floating" [(ngModel)]="produtos.descricao" name="descricao"
+          required></ion-input>
+      </ion-item>
+
+
+      <ion-item item class="pt-10">
+        <ion-input label="Quantidade" label-placement="floating"  [(ngModel)]="produtos.quant"
+          name="quant" required></ion-input>
+      </ion-item>
+
+      <ion-item item class="pt-10">
+        <ion-input label="Preço" label-placement="floating"  [(ngModel)]="produtos.valor"
+          name="valor" required></ion-input>
+      </ion-item>
+
+      <ion-item item class="pt-10">
+        <ion-button [disabled]="fc.invalid" (click)="save()" slot="end">Salvar<ion-icon name="bag-check-outline"></ion-icon></ion-button>
+        <ion-button color="danger" slot="end">Cancelar</ion-button>
+      </ion-item>
+
+    </ion-list>
+  </form>
+  
+</ion-content>

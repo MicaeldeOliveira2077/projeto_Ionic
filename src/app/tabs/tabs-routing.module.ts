@@ -22,6 +22,9 @@ const routes: Routes = [
       {
         path: 'userForm',
         loadChildren: () => import('../pages/user-form/user-form.module').then(m => m.UserFormPageModule)
+      }, {
+        path: 'userForm/:id',
+        loadChildren: () => import('../pages/user-form/user-form.module').then(m => m.UserFormPageModule)
       },
       {
         path: 'userEnter',
@@ -30,17 +33,31 @@ const routes: Routes = [
       {
         path: 'userList',
         loadChildren: () => import('../pages/user-list/user-list.module').then(m => m.UserListPageModule)
+      },{
+        path: 'produtoList',
+        loadChildren: () => import('../pages/produto-list/produto-list.module').then(m => m.ProdutoListPageModule)
+      },{
+        path: 'produtoForm',
+        loadChildren: () => import('../pages/produto-form/produto-form.module').then(m => m.ProdutoFormPageModule)
+      },
+      {
+        path: 'produtoView',
+        loadChildren: () => import('../pages/produto-view/produto-view.module').then(m => m.ProdutoViewPageModule)
+      },
+      {
+        path: 'produtoView/:id',
+        loadChildren: () => import('../pages/produto-view/produto-view.module').then(m => m.ProdutoViewPageModule)
       },
       {
         path: '',
-        redirectTo: '/tabs/tab1',
+        redirectTo: '/tabs/produtoList',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/tabs/produtoList',
     pathMatch: 'full'
   }
 ];
