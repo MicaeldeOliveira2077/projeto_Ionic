@@ -24,8 +24,13 @@
           <ion-input label="E-mail" type="email" label-placement="floating"  [(ngModel)]="user.email" name="email"
           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required></ion-input>
         </ion-item>
-  
-  
+          
+        <ion-item item class="pt-10">
+          <ion-input label="Telefone" label-placement="floating" [(ngModel)]="user.telefone"
+            name="telefone" required></ion-input>
+        </ion-item>
+
+  <div *ngIf="_id==null">
         <ion-item class="pt-10">
           <ion-input label="senha" type="password" label-placement="floating"  [(ngModel)]="user.senha" name="senha"
             #pass="ngModel"></ion-input>
@@ -35,18 +40,17 @@
           <ion-input label="senha" type="password" label-placement="floating"  (ngModel)="confpass" name="confsenha"
            #confpass="ngModel" ></ion-input>
         </ion-item>
-  
-  
-        <ion-item item class="pt-10">
-          <ion-input label="Telefone" label-placement="floating" [(ngModel)]="user.telefone"
-            name="telefone" required></ion-input>
-        </ion-item>
-  
+
         <ion-item item class="pt-10 ion-text-end">
           <ion-button [disabled]="fc.invalid || (pass.value !== confpass.value)" (click)="save()">Salvar<ion-icon name="checkbox-outline"></ion-icon></ion-button>
-          <ion-button color="danger">Cancelar</ion-button>
+          <ion-button color="danger" routerLink="/">Cancelar</ion-button>
         </ion-item>
+        </div>
 
+        <div *ngIf="_id!=null">
+        <ion-button [disabled]="fc.invalid" (click)="update()">Atualizar<ion-icon name="checkbox-outline"></ion-icon></ion-button>
+        <ion-button color="danger" routerLink="/">Cancelar</ion-button>
+        </div>
       </ion-list>
     </form>
 

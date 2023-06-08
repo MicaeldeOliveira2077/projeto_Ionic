@@ -16,7 +16,7 @@
 
     <ion-item-sliding *ngFor="let user of users">
       <ion-item-options side="start">
-        <ion-item-option color="danger">Remover</ion-item-option>
+        <ion-item-option color="danger" (click)="remove(user._id)">Remover</ion-item-option>
       </ion-item-options>
 
       <ion-item>
@@ -24,7 +24,7 @@
       </ion-item>
 
       <ion-item-options side="end">
-        <ion-item-option (click)="editUser(user._id)">Editar</ion-item-option>
+        <ion-item-option (click)="edit(user._id)">Editar</ion-item-option>
       </ion-item-options>
     </ion-item-sliding>
 
