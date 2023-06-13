@@ -16,7 +16,7 @@ export class UserEnterPage implements OnInit {
   senha: string = "";
 
   enter(){
-
+          
   }
 
 }

@@ -40,11 +40,11 @@ export class UserListPage implements OnInit {
 
   handleRefresh(event: any) {
     this.userService.list()
-    .then(res => {
-      console.log(res)
-      this.users = <User[]>res;
-      event?.target?.complete();
-    });
+      .then(res => {
+        console.log(res)
+        this.users = <User[]>res;
+        event?.target?.complete();
+      });
   }
 
   async remove(id: string) {
@@ -55,18 +55,25 @@ export class UserListPage implements OnInit {
         text: 'Não',
         role: 'cancel',
         handler: () => {
-          
         },
       }, {
         text: 'Sim',
         role: 'confirm',
         handler: () => {
-          this.userService.delete(id);
+          this.removeUser(id);
         },
       }],
     });
 
     await alert.present();
   }
+
+  removeUser(id: string) {
+    this.userService.delete(id)
+    .then(res => {
+      this.getList();
+    })
+  }
+
 }
 

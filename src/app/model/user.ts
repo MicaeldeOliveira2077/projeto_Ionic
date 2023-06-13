@@ -4,8 +4,9 @@ export class User {
     nome: string = "";
     telefone: string = "";
     foto: string = "";
-    email: String ="";
+    email: string ="";
     senha: string = "";
+    ativo: boolean = true;
    
     
 }
