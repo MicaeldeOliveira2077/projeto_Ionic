@@ -1,7 +1,10 @@
 import { Injectable, inject } from '@angular/core';
 import { User } from '../model/user';
 import { Firestore, collection, addDoc, getDocs, query, getDoc, doc, updateDoc, deleteDoc, where, setDoc } from '@angular/fire/firestore';
-import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
+import { asyncScheduler } from 'rxjs';
+import { Router } from '@angular/router';
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +14,9 @@ export class UserService {
   private firestore: Firestore = inject(Firestore);
   private userCollection = collection(this.firestore, 'users');
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   async add(user: User) {
     await createUserWithEmailAndPassword(this.auth, user.email, user.senha)
@@ -71,4 +76,18 @@ export class UserService {
     //return result.data() 
     return { _id: result.id, ...result.data() }
   }
+
+  async login(email: string, senha: string) {
+    await signInWithEmailAndPassword(this.auth, email, senha)
+    .then(res=>{})
+  }
+
+  async logoof() {
+   return await signOut(this.auth)
+  }
+
+  async loginGoogle() {
+    const provider = new GoogleAuthProvider();
+   return await signInWithPopup(this.auth,provider);
+   }
 }

@@ -49,6 +49,10 @@ const routes: Routes = [
         loadChildren: () => import('../pages/produto-view/produto-view.module').then(m => m.ProdutoViewPageModule)
       },
       {
+        path: 'userPerfil/:id',
+        loadChildren: () => import('../pages/user-perfil/user-perfil.module').then( m => m.UserPerfilPageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/produtoList',
         pathMatch: 'full'

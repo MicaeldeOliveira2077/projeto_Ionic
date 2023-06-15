@@ -11,10 +11,6 @@ export class Produtos {
     ativo: boolean = true;
     fotos: string = "";
 
-
-    add(){
-        console.log("SALVO!!");
-    };
 }
 
 
