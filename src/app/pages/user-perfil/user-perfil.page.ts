@@ -17,6 +17,7 @@ export class UserPerfilPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getParam()
   }
 
   _id: string | null = null;
@@ -37,11 +38,17 @@ export class UserPerfilPage implements OnInit {
   const image = await Camera.getPhoto({
     quality: 90,
     allowEditing: true,
-    resultType: CameraResultType.Uri
+    resultType: CameraResultType.Base64
   });
   const imageUrl = image.webPath;
   this.imageSrc = imageUrl;
-  this.user.foto = this.imageSrc ? this.imageSrc : ""
+  this.user.foto = this.imageSrc ? this.imageSrc : "";
+
+  if(image.base64String){
+    let nameFile = Date.now().toString()+"."+ image.format;
+    this.userService.setPhotoPerfil(nameFile, image.base64String)
+  }
+  
  }
   
 }

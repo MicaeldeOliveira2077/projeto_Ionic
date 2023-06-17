@@ -23,8 +23,8 @@ export class UserEnterPage implements OnInit {
   email: string = "";
   senha: string = "";
 
-  enter(){
-        this.userService.login(this.email, this.senha)
+ async enter(){
+       await this.userService.login(this.email, this.senha)
         .then(res=>{
             console.log(res);
             this.router.navigate(["/"]);
