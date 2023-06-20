@@ -12,6 +12,7 @@ export class ProdutoViewPage implements OnInit {
 
   _id: string | null = null;
   produto = new Produtos();
+  imageSrc: string | undefined;
 
   constructor(private activeRouter: ActivatedRoute, private produtosService: ProdutosService, private router: Router) { }
 
@@ -22,16 +23,24 @@ export class ProdutoViewPage implements OnInit {
   getParam() {
     this._id = this.activeRouter.snapshot.paramMap.get("id");
 
-    if (this._id) {
-      this.produtosService.get(this._id).then(res => {
-        this.produto = <Produtos>res;
-        console.log(res);
-      })
+  //--  if (this._id) {
+ //     this.produtosService.get(this._id).then(res => {
+  //      this.produto = <Produtos>res;
+     //   if (this.produto.fotos){ 
+      //    await this.produtosService.getProtoPerfil(this.produto.fotos)
+        //  .then(res=>{
+     //       this.imageSrc = res;
+  
+       //   })
+//} else {
+      //    this.imageSrc = "assets/image.jpeg"
+    //    }
+     //   })
+    //  }
 
-
-    }
+    } 
 
   }
 
 
-}
+

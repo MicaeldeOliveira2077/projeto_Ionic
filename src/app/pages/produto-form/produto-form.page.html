@@ -21,15 +21,9 @@
       </ion-item>
 
       <ion-item class="pt-10">
-        <ion-input label="Fotos" label-placement="floating" [(ngModel)]="produtos.fotos" name="fotos"
-        required></ion-input>
-      </ion-item>
-
-      <ion-item class="pt-10">
         <ion-input label="Descrição"  label-placement="floating" [(ngModel)]="produtos.descricao" name="descricao"
           required></ion-input>
       </ion-item>
-
 
       <ion-item item class="pt-10">
         <ion-input label="Quantidade" label-placement="floating"  [(ngModel)]="produtos.quant"
@@ -39,6 +33,11 @@
       <ion-item item class="pt-10">
         <ion-input label="Preço" label-placement="floating"  [(ngModel)]="produtos.valor"
           name="valor" required></ion-input>
+      </ion-item>
+
+      <ion-item class="pt-10">
+        <ion-input label="Fotos" type="file" label-placement="floating" [(ngModel)]="produtos.fotos" name="fotos" multiple
+          required></ion-input>
       </ion-item>
 
       <ion-item item class="pt-10">

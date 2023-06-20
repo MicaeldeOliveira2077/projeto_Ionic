@@ -1,11 +1,12 @@
 import { Injectable, inject } from '@angular/core';
 import { User } from '../model/user';
-import { Firestore, collection, addDoc, getDocs, query, getDoc, doc, updateDoc, deleteDoc, where, setDoc } from '@angular/fire/firestore';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
+import { Firestore, collection, addDoc, getDoc, query, getDocs, doc, updateDoc,
+  deleteDoc, where, setDoc, } from '@angular/fire/firestore';
 import { asyncScheduler } from 'rxjs';
 import { Router } from '@angular/router';
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { Storage, ref, uploadBytesResumable, uploadString } from '@angular/fire/storage';
+import { Auth, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signOut, } from '@angular/fire/auth';
+import { Storage, getDownloadURL, getStorage, ref, uploadBytesResumable, uploadString } from '@angular/fire/storage';
+import { url } from 'inspector';
 
 @Injectable({
   providedIn: 'root'
@@ -23,12 +24,10 @@ export class UserService {
 
   async add(user: User) {
     await createUserWithEmailAndPassword(this.auth, user.email, user.senha)
-      .then(resAuth => {
-        //delete user._id;
-        return this.addUser(user, resAuth.user.uid)
-          .catch(async err => {
-            await this.auth.currentUser?.delete();
-          });
+      .then((resAuth) => {
+        return this.addUser(user, resAuth.user.uid).catch(async (err) => {
+          await this.auth.currentUser?.delete();
+        });
       })
       .catch(async (erroAuth) => {
         await this.auth.currentUser?.delete();
@@ -36,15 +35,16 @@ export class UserService {
   }
 
   addUser(user: User, idDoc: string = '') {
+    //delete user._id;
+    //return addDoc(this.userCollection, <User>{...user})
     return setDoc(doc(this.firestore, 'users/' + idDoc), <User>{
-      email: user.email,
       nome: user.nome,
+      email: user.email,
       telefone: user.telefone,
       //senha: user.senha,
-      ativo: user.ativo
+      ativo: user.ativo,
     });
   }
-
   async update(user: User, id: string) {
     const result = await updateDoc(doc(this.firestore, 'users', id), {
       email: user.email,
@@ -80,8 +80,7 @@ export class UserService {
   }
 
   async login(email: string, senha: string) {
-    await signInWithEmailAndPassword(this.auth, email, senha)
-      .then(res => { })
+    return await signInWithEmailAndPassword(this.auth, email, senha)
   }
 
   async logoof() {
@@ -93,9 +92,19 @@ export class UserService {
     return await signInWithPopup(this.auth, provider)
   }
 
-  async setPhotoPerfil(imgName:string, imgBase64:string) {
-      const storageRef = ref(this.storage, "user/" + imgName);
-      return await uploadString(storageRef, imgBase64, "base64")
-    }
+  async setPhotoPerfil(imgName: string, imgBase64: string, id: string) {
+    const storageRef = ref(this.storage, "user/" + imgName);
+    return await uploadString(storageRef, imgBase64, "base64")
+      .then(async res => {
+        const result = await updateDoc(doc(this.firestore, 'users', id), {
+          foto: res.ref.fullPath
+        });
+      })
+  }
+
+  async getProtoPerfil(imgRef: string) {
+    const storage = getStorage();
+    return await getDownloadURL(ref(storage, imgRef))
+  }
   
 }
