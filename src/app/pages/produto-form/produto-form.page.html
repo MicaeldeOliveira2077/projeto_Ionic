@@ -35,11 +35,6 @@
           name="valor" required></ion-input>
       </ion-item>
 
-      <ion-item class="pt-10">
-        <ion-input label="Fotos" type="file" label-placement="floating" [(ngModel)]="produtos.fotos" name="fotos" multiple
-          required></ion-input>
-      </ion-item>
-
       <ion-item item class="pt-10">
         <ion-button [disabled]="fc.invalid" (click)="save()" slot="end">Salvar<ion-icon name="bag-check-outline"></ion-icon></ion-button>
         <ion-button color="danger" slot="end"  routerLink="/">Cancelar</ion-button>

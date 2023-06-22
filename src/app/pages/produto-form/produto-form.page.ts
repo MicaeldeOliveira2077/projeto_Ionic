@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Camera, CameraResultType } from '@capacitor/camera';
 import { AlertController } from '@ionic/angular';
 import { Produtos } from 'src/app/model/produtos';
 import { ProdutosService } from 'src/app/services/produtos.service';
@@ -12,6 +13,7 @@ import { ProdutosService } from 'src/app/services/produtos.service';
 export class ProdutoFormPage implements OnInit {
 
   _id: string | null = null;
+  imageSrc: string | undefined;
   produtos = new Produtos();
   constructor(private alertController: AlertController, private router: Router, private produtosService: ProdutosService, private activeRouter: ActivatedRoute
   ) { }
@@ -58,4 +60,5 @@ export class ProdutoFormPage implements OnInit {
 
   }
 
+  
 }

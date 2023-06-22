@@ -9,8 +9,7 @@ export class Produtos {
     quant: number = 0;
     valor: number = 0;
     ativo: boolean = true;
-    fotos: string[] = [];
-
+    fotos: string = "";
 }
 
 

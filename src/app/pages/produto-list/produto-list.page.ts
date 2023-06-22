@@ -12,6 +12,7 @@ export class ProdutoListPage implements OnInit {
 
   produtos:Produtos[] = [];
   produtosServices: any;
+ 
 
   constructor(private router: Router, private produtoService: ProdutosService) { }
 
@@ -28,8 +29,20 @@ export class ProdutoListPage implements OnInit {
     this.produtoService.list().then(res => {
       console.log(res)
       this.produtos = <Produtos[]>res;
-    })
-  }
+      this.produtos.forEach(async produtos => {
+
+        if (produtos.fotos) {
+          await this.produtoService.getProtoProduct(produtos.fotos)
+            .then(res => {
+              produtos.fotos = res;
+            });
+        } else {
+          produtos.fotos = "assets/package.jpg";
+        }
+      });
+    });
+    }
+  
 
   handleRefresh(event: any) {
     setTimeout(() => {
@@ -48,4 +61,6 @@ export class ProdutoListPage implements OnInit {
     }
     return descricao;
   }
+
+ 
 }

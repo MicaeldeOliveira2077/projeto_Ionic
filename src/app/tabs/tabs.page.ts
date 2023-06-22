@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ProdutosService } from '../services/produtos.service';
 
 @Component({
   selector: 'app-tabs',
@@ -6,7 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['tabs.page.scss']
 })
 export class TabsPage {
+  quantidadeProdutos: number = 0;
+  constructor(private produtosService: ProdutosService) {}
 
-  constructor() {}
 
+  async ionViewWillEnter() {
+    this.quantidadeProdutos = await this.produtosService.getQuantidadeProdutos();
+  }
+  
 }
